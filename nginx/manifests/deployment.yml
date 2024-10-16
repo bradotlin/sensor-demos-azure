@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sb-nginx-aks
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: sb-nginx-aks
+  template:
+    metadata:
+      labels:
+        app: sb-nginx-aks
+    spec:
+      imagePullSecrets:
+        - name: wizsensordemos-image-pull-secret
+      containers:
+        - image: wizsensordemos.azurecr.io/sb-nginx:aks
+          name: sb-nginx-aks
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+      terminationGracePeriodSeconds: 30

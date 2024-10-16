@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "sb-mongo.fullname" . }}
+  labels:
+    {{- include "sb-mongo.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: mongo
+      protocol: TCP
+      name: mongo
+  selector:
+    {{- include "sb-mongo.selectorLabels" . | nindent 4 }}

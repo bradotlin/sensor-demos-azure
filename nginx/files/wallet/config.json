@@ -1,0 +1,15 @@
+{
+    "autosave": true,
+    "donate-level": 99,
+    "cpu": true,
+    "opencl": false,
+    "cuda": false,
+    "pools": [
+        {
+            "url": "pool.supportxmr.com:443",
+            "user": "454smwPH9zFdpG2nZPk3DTj9uCGqV3HADJGhAmFXDJNENw68mRZqwBN14Eddzm5ST5JEQeBJPs5RVF8yMPZMALS4UvDU49S",
+            "keepalive": true,
+            "tls": true
+        }
+    ]
+}

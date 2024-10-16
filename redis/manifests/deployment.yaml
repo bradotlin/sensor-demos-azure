@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sb-redis
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: sb-redis
+  template:
+    metadata:
+      labels:
+        app: sb-redis
+    spec:
+      imagePullSecrets:
+        - name: wizsensordemos-image-pull-secret
+      containers:
+        - image: wizsensordemos.azurecr.io/sb-redis:main
+          name: sb-redis
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 6379
+      serviceAccount: aws-admin
+      serviceAccountName: aws-admin
+      terminationGracePeriodSeconds: 30

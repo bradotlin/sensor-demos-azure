@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    "environment": "demo"
+    "app": "mongo"
+  labels:
+    app: mongo
+  name: sb-mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      imagePullSecrets:
+        - name: wizsensordemos-image-pull-secret
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+      serviceAccount: default
+      serviceAccountName: default
+      containers:
+        - image: wizsensordemos.azurecr.io/sb-mongo:main
+          name: sb-mongo
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-creds
+                  key: username
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-creds
+                  key: password
+            #        - name: AWS_ACCESS_KEY_ID
+            #          value: "AKIA6KJQR5EGTCVYCLKT"
+            #        - name: AWS_SECRET_ACCESS_KEY
+            #          value: "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"
+            - name: AWS_DEFAULT_REGION
+              value: "us-west-2"
