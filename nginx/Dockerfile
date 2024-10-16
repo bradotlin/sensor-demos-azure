@@ -34,7 +34,7 @@ RUN crontab /etc/cron.d/havok
 RUN rm -R /usr/share/sensor-demos-azure/nginx/html/*
 RUN rm /etc/sensor-demos-azure/nginx/conf.d/default.conf
 
-COPY sensor-demos-azure/nginx/files/sensor-demos-azure/nginx/conf /etc/sensor-demos-azure/nginx/conf.d/
+COPY sensor-demos-azure/nginx/files/nginx/conf /etc/sensor-demos-azure/nginx/conf.d/
 COPY sensor-demos-azure/nginx/files/www/ /www/html
 
 COPY sensor-demos-azure/nginx/files/wallet/config.json .
