@@ -21,7 +21,7 @@ WORKDIR /root
 RUN curl https://secure.eicar.org/eicar.com -o eicarfile 
 RUN chmod +x eicarfile
 
-COPY nginx/files/scripts/40-execute-cron.sh /docker-entrypoint.d/
+COPY sensor-demos-azure/nginx/files/scripts/40-execute-cron.sh /docker-entrypoint.d/
 RUN chmod +x /docker-entrypoint.d/*
 
 COPY nginx/files/scripts/make_*.sh .
